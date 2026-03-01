@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Our Story — BREWED Coffee</title>
+    <meta name="description"
+        content="The obsessive, uncompromising story behind BREWED Coffee — from one bad airport espresso to 23 origins across 6 continents." />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: { extend: { colors: { "primary": "#C9A96E", "primary-dark": "#a8864c", "background-dark": "#1A0F07", "surface-dark": "#2C1810" }, fontFamily: { "display": ["Inter", "sans-serif"], "serif": ["Playfair Display", "serif"] }, borderRadius: { DEFAULT: "1rem", full: "9999px" } } },
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(201, 169, 110, 0.2);
+        }
+
+        .gold-border-left {
+            border-left: 4px solid #C9A96E;
+        }
+
+        .timeline-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #C9A96E;
+            flex-shrink: 0;
+            margin-top: 4px;
+            box-shadow: 0 0 12px rgba(201, 169, 110, 0.5);
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark text-white font-display overflow-x-hidden">
+
+    <!-- Nav -->
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background-dark/80 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <span
+                    class="material-symbols-outlined text-primary text-3xl group-hover:rotate-12 transition-transform duration-500">coffee</span>
+                <span
+                    class="font-serif text-2xl font-bold tracking-tight text-white group-hover:text-primary transition-colors">BREWED</span>
+            </a>
+            <div class="hidden md:flex items-center gap-10">
+                <a class="text-sm font-medium text-white/80 hover:text-primary relative group py-2"
+                    href="index.html">Home<span
+                        class="absolute bottom-0 left-0 w-0 h-[1px] bg-primary transition-all duration-300 group-hover:w-full"></span></a>
+                <a class="text-sm font-medium text-white/80 hover:text-primary relative group py-2"
+                    href="menu.html">Menu<span
+                        class="absolute bottom-0 left-0 w-0 h-[1px] bg-primary transition-all duration-300 group-hover:w-full"></span></a>
+                <a class="text-sm font-medium text-primary relative group py-2" href="story.html">Our Story<span
+                        class="absolute bottom-0 left-0 w-full h-[1px] bg-primary"></span></a>
+                <a class="text-sm font-medium text-white/80 hover:text-primary relative group py-2"
+                    href="contact.html">Contact<span
+                        class="absolute bottom-0 left-0 w-0 h-[1px] bg-primary transition-all duration-300 group-hover:w-full"></span></a>
+            </div>
+            <a href="menu.html"
+                class="bg-primary hover:bg-primary-dark text-background-dark font-bold text-sm px-6 py-2.5 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(201,169,110,0.5)]">Shop
+                Now</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative min-h-[70vh] flex items-end pt-20 overflow-hidden">
+        <div class="absolute inset-0 z-0"
+            style="background-image:linear-gradient(to bottom, rgba(26,15,7,0.3) 0%, rgba(26,15,7,0.9) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuBKKAWR4F4vDIdl7DTucXKgWeH_eT5bmjQn3aOLtRoA3bnJkHtlNN4uxEoa3kbaHU9b_mry5OXvzZZA0GBSzFhquF1rJBNcKt-_g8qfqSQQOUyeYnECP0ruC9mmL4WTNI9H3NGJgAs6DuEvx1oU1c5dbydWg_Vn3AsNLj28pQTjxpIZCaVRZ0ohmAETBX6bHITOA1XpNespjZR1b02D4I4WcynnBX8EZk2kM3_lqeJ69VlDeMklR5-EpNeIzORdY-_aZbZnTXR75bIo'); background-size:cover; background-position:center;">
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 pb-20 w-full">
+            <span
+                class="inline-block py-1 px-3 rounded-full border border-white/20 bg-white/5 text-white/80 text-xs font-bold uppercase tracking-widest mb-6">Our
+                Story</span>
+            <h1 class="font-serif text-6xl md:text-8xl font-black text-white leading-[0.95] mb-4">We Didn't
+                Just<br><span class="text-primary italic">Open A Brand.</span></h1>
+            <p class="text-white/70 text-2xl font-serif italic">We declared war on mediocre coffee.</p>
+        </div>
+    </section>
+
+    <!-- Origin Story -->
+    <section class="py-24 bg-background-dark">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-16 items-start">
+            <div class="md:col-span-3">
+                <p class="font-serif italic text-3xl md:text-4xl text-white/90 leading-relaxed mb-8">"It started with
+                    one bad cup at an airport in 2008. We swore it would never happen again."</p>
+                <div class="w-16 h-1 bg-primary rounded-full mb-8"></div>
+            </div>
+            <div class="md:col-span-2 flex flex-col gap-6 text-white/70 text-lg leading-relaxed">
+                <p>BREWED was born from obsession. Not the startup kind — the kind where you spend months in Yirgacheffe
+                    learning to hand-sort green beans at origin, because you genuinely cannot sleep knowing how much
+                    potential gets wasted.</p>
+                <p>Today we source from 23 farms across 11 countries. Every relationship is direct trade. Every roast is
+                    small-batch. Every cup that leaves our facility carries the fingerprint of someone who stayed up too
+                    late getting it right.</p>
+                <p>We don't do bulk. We don't do stale. We don't do mediocre. Full stop.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="py-20 bg-surface-dark">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="font-serif text-4xl font-bold text-white mb-16 text-center">The Journey</h2>
+            <div class="relative">
+                <!-- Connecting line -->
+                <div
+                    class="hidden md:block absolute top-[7px] left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/40 to-transparent">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-10">
+                    <!-- Each milestone -->
+                    <div class="flex flex-col items-start md:items-center gap-4">
+                        <div class="flex md:flex-col items-center gap-4 md:gap-3">
+                            <div class="timeline-dot"></div>
+                            <span class="font-serif text-primary font-bold text-xl">2008</span>
+                        </div>
+                        <div class="md:text-center">
+                            <h4 class="text-white font-bold mb-1">The Bad Cup</h4>
+                            <p class="text-white/50 text-sm">One terrible airport espresso ignited a decade of obsession
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start md:items-center gap-4">
+                        <div class="flex md:flex-col items-center gap-4 md:gap-3">
+                            <div class="timeline-dot"></div>
+                            <span class="font-serif text-primary font-bold text-xl">2011</span>
+                        </div>
+                        <div class="md:text-center">
+                            <h4 class="text-white font-bold mb-1">First Roaster</h4>
+                            <p class="text-white/50 text-sm">A secondhand 5kg drum roaster in a Bangalore garage</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start md:items-center gap-4">
+                        <div class="flex md:flex-col items-center gap-4 md:gap-3">
+                            <div class="timeline-dot"></div>
+                            <span class="font-serif text-primary font-bold text-xl">2015</span>
+                        </div>
+                        <div class="md:text-center">
+                            <h4 class="text-white font-bold mb-1">First Direct Trade</h4>
+                            <p class="text-white/50 text-sm">Flying to Ethiopia to meet farmers face-to-face and shake
+                                hands</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start md:items-center gap-4">
+                        <div class="flex md:flex-col items-center gap-4 md:gap-3">
+                            <div class="timeline-dot"></div>
+                            <span class="font-serif text-primary font-bold text-xl">2019</span>
+                        </div>
+                        <div class="md:text-center">
+                            <h4 class="text-white font-bold mb-1">50,000 Customers</h4>
+                            <p class="text-white/50 text-sm">Growing through word-of-mouth alone. Zero paid ads.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start md:items-center gap-4">
+                        <div class="flex md:flex-col items-center gap-4 md:gap-3">
+                            <div class="timeline-dot"></div>
+                            <span class="font-serif text-primary font-bold text-xl">2024</span>
+                        </div>
+                        <div class="md:text-center">
+                            <h4 class="text-white font-bold mb-1">23 Origins</h4>
+                            <p class="text-white/50 text-sm">Sourcing from 6 continents. Still obsessed. Still
+                                small-batch.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sourcing Philosophy -->
+    <section class="py-24 bg-background-dark">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="font-serif text-5xl font-bold text-primary mb-16">From Soil To Cup</h2>
+            <div class="flex flex-col gap-0">
+                <!-- Panel 1 -->
+                <div class="grid md:grid-cols-2 gap-0 border border-white/5 rounded-t-2xl overflow-hidden">
+                    <div class="aspect-[4/3] bg-cover bg-center"
+                        style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBKKAWR4F4vDIdl7DTucXKgWeH_eT5bmjQn3aOLtRoA3bnJkHtlNN4uxEoa3kbaHU9b_mry5OXvzZZA0GBSzFhquF1rJBNcKt-_g8qfqSQQOUyeYnECP0ruC9mmL4WTNI9H3NGJgAs6DuEvx1oU1c5dbydWg_Vn3AsNLj28pQTjxpIZCaVRZ0ohmAETBX6bHITOA1XpNespjZR1b02D4I4WcynnBX8EZk2kM3_lqeJ69VlDeMklR5-EpNeIzORdY-_aZbZnTXR75bIo'); filter:brightness(0.7);">
+                    </div>
+                    <div class="bg-surface-dark p-12 flex flex-col justify-center">
+                        <span class="text-primary text-sm font-bold uppercase tracking-widest mb-4">01</span>
+                        <h3 class="font-serif text-3xl font-bold text-white mb-4">We Visit The Farms</h3>
+                        <p class="text-white/60 leading-relaxed">Every origin we carry, we've visited. We know the
+                            farmers by name. We pay above fair-trade rates — always — because we believe the best coffee
+                            comes from trust, not transactions.</p>
+                    </div>
+                </div>
+                <!-- Panel 2 -->
+                <div class="grid md:grid-cols-2 gap-0 border-x border-b border-white/5 overflow-hidden">
+                    <div class="bg-surface-dark p-12 flex flex-col justify-center order-2 md:order-1">
+                        <span class="text-primary text-sm font-bold uppercase tracking-widest mb-4">02</span>
+                        <h3 class="font-serif text-3xl font-bold text-white mb-4">We Roast Fresh</h3>
+                        <p class="text-white/60 leading-relaxed">Roasted to order, shipped the next day. Our internal
+                            rule: if it sat longer than a week, it doesn't ship. Our customers deserve what comes out of
+                            the roaster — not a warehouse shelf.</p>
+                    </div>
+                    <div class="aspect-[4/3] bg-cover bg-center order-1 md:order-2"
+                        style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuC9uDHx5hW9dh1BktNjejpey6Tgm8b4QNI2F0ZG3f8ehtJeEsQQAExizSYPiHYg3ztL-Ft0f8T9mCqYRpRc4R9TgSeBp8A2JrCGYUZhsKiGw23F8Sjk8trZerXU7GqCth9ryd-DAFXhT3utJZ03GeB0nNJOg2npFgLCixMzOy6lCZqZ1AdlgQQphDnPFLeL06DUcfTnDb9tcsYiWMhGVNIbGaJcJ1efgiwTmY_5gNIbdT3XLcobl9FTp3VuEoU77OrDoJJq9WRWnIe0'); filter:brightness(0.7);">
+                    </div>
+                </div>
+                <!-- Panel 3 -->
+                <div class="grid md:grid-cols-2 gap-0 border-x border-b border-white/5 rounded-b-2xl overflow-hidden">
+                    <div class="aspect-[4/3] bg-cover bg-center"
+                        style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuABIpkPq0dobYbGXAO_dNInMwsqKOCG_X5xuRJPAHRBFhHJz6ji6w8-7g4R9klpQ-EbofqGzXh-tOfaY1ZuYIKsZ6Iaptm8YVOGbhVU73l0mjUhc8PNcr2YT-T2-TtnVwjcAzKmM5n9KFj0oVw0xyjFm8F9Aim_SXxQPZIXt6vcgDONFzvj1mpLAhegzUOUWf_YtCMwZBvCvU3xsOBsFtKLR7Ur-S4Jl1Zmz8vDsg5ymDMPyIipR2OpUw-9zjJdlMGho8K8NhYW2dGV'); filter:brightness(0.6);">
+                    </div>
+                    <div class="bg-surface-dark p-12 flex flex-col justify-center">
+                        <span class="text-primary text-sm font-bold uppercase tracking-widest mb-4">03</span>
+                        <h3 class="font-serif text-3xl font-bold text-white mb-4">We Never Compromise</h3>
+                        <p class="text-white/60 leading-relaxed">If a harvest isn't exceptional that year, we don't
+                            carry it. We'd rather have a smaller catalogue and an unblemished reputation than a full
+                            shelf and one disappointed customer.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="py-24 bg-surface-dark">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="font-serif text-4xl font-bold text-white mb-4 text-center">The Obsessives Behind BREWED</h2>
+            <p class="text-white/50 text-center mb-16">Three people who said "no" to shortcuts.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Team member 1 -->
+                <div
+                    class="glass-card p-8 rounded-2xl text-center group hover:-translate-y-2 transition-all duration-500">
+                    <div class="w-24 h-24 rounded-full mx-auto mb-6 flex items-center justify-center text-4xl font-serif font-bold text-background-dark"
+                        style="background:linear-gradient(135deg,#C9A96E,#a8864c);">A</div>
+                    <h3 class="font-serif text-xl font-bold text-white mb-1">Arjun Mehta</h3>
+                    <p class="text-primary text-sm font-medium mb-4">Founder & Head Roaster</p>
+                    <p class="text-white/60 text-sm leading-relaxed">Former software engineer who quit to roast. Has
+                        visited 40+ coffee farms across 6 countries. Believes that a great cup is a solvable engineering
+                        problem.</p>
+                </div>
+                <!-- Team member 2 -->
+                <div
+                    class="glass-card p-8 rounded-2xl text-center group hover:-translate-y-2 transition-all duration-500">
+                    <div class="w-24 h-24 rounded-full mx-auto mb-6 flex items-center justify-center text-4xl font-serif font-bold text-background-dark"
+                        style="background:linear-gradient(135deg,#C9A96E,#a8864c);">P</div>
+                    <h3 class="font-serif text-xl font-bold text-white mb-1">Priya Nair</h3>
+                    <p class="text-primary text-sm font-medium mb-4">Head of Green Bean Sourcing</p>
+                    <p class="text-white/60 text-sm leading-relaxed">Licensed Q-Grader and certified coffee taster.
+                        Fluent in four languages, including — she insists — the language of terroir.</p>
+                </div>
+                <!-- Team member 3 -->
+                <div
+                    class="glass-card p-8 rounded-2xl text-center group hover:-translate-y-2 transition-all duration-500">
+                    <div class="w-24 h-24 rounded-full mx-auto mb-6 flex items-center justify-center text-4xl font-serif font-bold text-background-dark"
+                        style="background:linear-gradient(135deg,#C9A96E,#a8864c);">M</div>
+                    <h3 class="font-serif text-xl font-bold text-white mb-1">Marcus D'Souza</h3>
+                    <p class="text-primary text-sm font-medium mb-4">Lead Barista & Educator</p>
+                    <p class="text-white/60 text-sm leading-relaxed">Runs our brewing workshops and education programme.
+                        Has made 200,000+ cups and hates every shortcut he's ever seen anyone take.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="py-20 bg-background-dark">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="font-serif text-4xl md:text-5xl font-bold text-white mb-6">Ready to taste the difference?</h2>
+            <p class="text-white/60 text-xl mb-10">Join over 50,000 coffee lovers who chose not to settle.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="menu.html"
+                    class="bg-primary text-background-dark font-bold text-base px-10 py-4 rounded-full hover:bg-white transition-all duration-300 shadow-[0_4px_14px_0_rgba(201,169,110,0.4)]">Explore
+                    Our Blends</a>
+                <a href="contact.html"
+                    class="flex items-center justify-center gap-2 text-white font-medium text-base px-8 py-4 rounded-full border border-white/20 hover:border-primary hover:text-primary transition-all duration-300 bg-white/5">Get
+                    In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-background-dark border-t border-white/5 py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-2xl">coffee</span>
+                <span class="font-serif text-xl font-bold text-white">BREWED</span>
+            </div>
+            <div class="flex gap-8 text-white/50 text-sm">
+                <a href="index.html" class="hover:text-primary transition-colors">Home</a>
+                <a href="menu.html" class="hover:text-primary transition-colors">Menu</a>
+                <a href="story.html" class="hover:text-primary transition-colors">Our Story</a>
+                <a href="contact.html" class="hover:text-primary transition-colors">Contact</a>
+            </div>
+            <p class="text-white/30 text-xs">© 2024 BREWED Coffee Co.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

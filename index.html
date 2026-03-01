@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>BREWED — The Art of Coffee Perfected</title>
+  <meta name="description"
+    content="Single-origin. Slow-roasted. Obsessively brewed. BREWED is a premium specialty coffee brand crafted for those who take coffee seriously." />
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap"
+    rel="stylesheet" />
+  <!-- Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <!-- Theme Configuration -->
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#C9A96E",
+            "primary-dark": "#a8864c",
+            "background-light": "#f8f8f5",
+            "background-dark": "#1A0F07",
+            "surface-dark": "#2C1810",
+            "gold-accent": "#C9A96E",
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"],
+            "serif": ["Playfair Display", "serif"],
+          },
+          borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+        },
+      },
+    }
+  </script>
+  <style>
+    /* Scroll-driven frame animation hero */
+    #hero-canvas-section {
+      position: relative;
+      height: 600vh;
+      /* tall scroll zone */
+    }
+
+    #canvas-sticky {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #coffee-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    #hero-text-block {
+      pointer-events: all;
+      transition: opacity 0.3s ease;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(201, 169, 110, 0.2);
+    }
+
+    .text-glow {
+      text-shadow: 0 0 30px rgba(201, 169, 110, 0.4);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in-up {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    @keyframes scrollBounce {
+
+      0%,
+      100% {
+        transform: translateY(0) translateX(-50%);
+      }
+
+      50% {
+        transform: translateY(8px) translateX(-50%);
+      }
+    }
+
+    .scroll-indicator {
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+  </style>
+</head>
+
+<body class="bg-background-dark text-white font-display overflow-x-hidden">
+
+  <!-- Navigation -->
+  <nav id="main-nav"
+    class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background-dark/80 border-b border-white/5 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2 group cursor-pointer">
+        <span
+          class="material-symbols-outlined text-primary text-3xl group-hover:rotate-12 transition-transform duration-500">coffee</span>
+        <h1 class="font-serif text-2xl font-bold tracking-tight text-white group-hover:text-primary transition-colors">
+          BREWED</h1>
+      </div>
+      <div class="hidden md:flex items-center gap-10">
+        <a class="text-sm font-medium text-white/80 hover:text-primary relative group py-2" href="index.html">Home<span
+            class="absolute bottom-0 left-0 w-0 h-[1px] bg-primary transition-all duration-300 group-hover:w-full"></span></a>
+        <a class="text-sm font-medium text-white/80 hover:text-primary relative group py-2" href="menu.html">Menu<span
+            class="absolute bottom-0 left-0 w-0 h-[1px] bg-primary transition-all duration-300 group-hover:w-full"></span></a>
+        <a class="text-sm font-medium text-white/80 hover:text-primary relative group py-2" href="story.html">Our
+          Story<span
+            class="absolute bottom-0 left-0 w-0 h-[1px] bg-primary transition-all duration-300 group-hover:w-full"></span></a>
+        <a class="text-sm font-medium text-white/80 hover:text-primary relative group py-2"
+          href="contact.html">Contact<span
+            class="absolute bottom-0 left-0 w-0 h-[1px] bg-primary transition-all duration-300 group-hover:w-full"></span></a>
+      </div>
+      <a href="menu.html"
+        class="bg-primary hover:bg-primary-dark text-background-dark font-bold text-sm px-6 py-2.5 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(201,169,110,0.5)]">Shop
+        Now</a>
+    </div>
+  </nav>
+
+  <!-- HERO: Scroll-Driven Frame Animation -->
+  <section id="hero-canvas-section">
+    <div id="canvas-sticky">
+      <!-- The canvas where frames are drawn -->
+      <canvas id="coffee-canvas"></canvas>
+      <!-- Dark vignette overlay -->
+      <div class="absolute inset-0 z-[5]"
+        style="background: radial-gradient(ellipse at center, transparent 40%, rgba(26,15,7,0.7) 100%);"></div>
+      <!-- Text overlay (fades out as animation progresses) -->
+      <div id="hero-overlay">
+        <div class="max-w-7xl mx-auto px-6 w-full">
+          <div id="hero-text-block" class="flex flex-col gap-6 max-w-lg animate-fade-in-up">
+            <div class="flex flex-col">
+              <span class="text-white/70 font-serif text-2xl italic mb-[-8px] z-10">The Art Of</span>
+              <h2 class="font-serif font-black leading-[0.9] text-primary text-glow tracking-tighter"
+                style="font-size: clamp(4rem,10vw,8rem);">COFFEE</h2>
+              <span class="text-white font-serif italic text-3xl text-right mr-8 -mt-2">Perfected.</span>
+            </div>
+            <p class="text-white/80 text-lg font-light border-l-2 border-primary pl-5 py-1">Single-origin.
+              Slow-roasted.<br>Obsessively brewed for the connoisseur.</p>
+            <div class="flex flex-wrap gap-4">
+              <a href="menu.html"
+                class="bg-primary text-background-dark font-bold text-base px-8 py-3.5 rounded-full hover:bg-white transition-all duration-300 shadow-[0_4px_14px_0_rgba(201,169,110,0.39)]">Explore
+                Blends</a>
+              <a href="story.html"
+                class="flex items-center gap-2 text-white font-medium text-base px-6 py-3.5 rounded-full border border-white/20 hover:border-primary hover:text-primary transition-all duration-300 bg-white/5">
+                <span class="material-symbols-outlined filled text-xl">play_circle</span>Our Story
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Scroll indicator -->
+      <div class="scroll-indicator absolute bottom-10 left-1/2 flex flex-col items-center gap-2 text-white/50 z-20">
+        <span class="text-xs uppercase tracking-widest">Scroll</span>
+        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Strip -->
+  <section class="bg-surface-dark border-t border-white/5 py-16 relative z-20">
+    <div
+      class="max-w-7xl mx-auto px-6 flex flex-wrap justify-center md:justify-between items-center gap-10 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-white/10 w-full">
+      <div class="flex-1 flex flex-col items-center text-center px-4 pt-4 md:pt-0">
+        <span class="font-serif text-5xl md:text-6xl font-bold text-primary mb-2">15+</span>
+        <span class="text-white/60 text-sm uppercase tracking-widest font-medium">Years of Craft</span>
+      </div>
+      <div class="flex-1 flex flex-col items-center text-center px-4 pt-4 md:pt-0">
+        <span class="font-serif text-5xl md:text-6xl font-bold text-primary mb-2">23</span>
+        <span class="text-white/60 text-sm uppercase tracking-widest font-medium">Origins Sourced</span>
+      </div>
+      <div class="flex-1 flex flex-col items-center text-center px-4 pt-4 md:pt-0">
+        <span class="font-serif text-5xl md:text-6xl font-bold text-primary mb-2">100%</span>
+        <span class="text-white/60 text-sm uppercase tracking-widest font-medium">Arabica Beans</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signature Blends -->
+  <section class="py-24 bg-background-dark relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+        <div>
+          <h2 class="font-serif text-5xl md:text-6xl font-bold text-white leading-none">Our Signature <br /> <span
+              class="text-primary italic">Blends</span></h2>
+        </div>
+        <a class="group flex items-center gap-2 text-primary hover:text-white transition-colors pb-2 border-b border-primary/30 hover:border-white"
+          href="menu.html">View Full Menu <span
+            class="material-symbols-outlined group-hover:translate-x-1 transition-transform text-lg">arrow_forward</span></a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <div
+          class="glass-card rounded-lg p-6 group hover:border-primary/50 transition-all duration-500 hover:-translate-y-2">
+          <div class="relative w-full aspect-[4/5] rounded-lg overflow-hidden mb-6 bg-surface-dark">
+            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+              style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuABIpkPq0dobYbGXAO_dNInMwsqKOCG_X5xuRJPAHRBFhHJz6ji6w8-7g4R9klpQ-EbofqGzXh-tOfaY1ZuYIKsZ6Iaptm8YVOGbhVU73l0mjUhc8PNcr2YT-T2-TtnVwjcAzKmM5n9KFj0oVw0xyjFm8F9Aim_SXxQPZIXt6vcgDONFzvj1mpLAhegzUOUWf_YtCMwZBvCvU3xsOBsFtKLR7Ur-S4Jl1Zmz8vDsg5ymDMPyIipR2OpUw-9zjJdlMGho8K8NhYW2dGV');">
+            </div>
+            <div
+              class="absolute top-4 right-4 bg-primary text-background-dark font-bold text-xs px-3 py-1 rounded-full">
+              Best Seller</div>
+          </div>
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-2xl font-serif font-bold text-white group-hover:text-primary transition-colors">Ethiopian
+              Sunrise</h3>
+            <span class="text-primary font-bold text-lg">Rs. 499</span>
+          </div>
+          <p class="text-white/60 text-sm mb-4 line-clamp-2">Bright, floral notes with hints of citrus and blueberry. A
+            perfect morning ritual.</p>
+          <div class="flex items-center gap-2 mb-6">
+            <span class="text-xs text-white/40 uppercase tracking-wide">Intensity</span>
+            <div class="flex gap-1">
+              <div class="w-2 h-2 rounded-full bg-primary"></div>
+              <div class="w-2 h-2 rounded-full bg-primary"></div>
+              <div class="w-2 h-2 rounded-full bg-primary"></div>
+              <div class="w-2 h-2 rounded-full bg-white/20"></div>
+              <div class="w-2 h-2 rounded-full bg-white/20"></div>
+            </div>
+          </div>
+          <button
+            class="w-full border border-primary text-primary hover:bg-primary hover:text-background-dark font-medium py-3 rounded-full transition-all duration-300 flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-lg">shopping_bag</span>Add to Cart
+          </button>
+        </div>
+        <!-- Card 2 -->
+        <div
+          class="glass-card rounded-lg p-6 group hover:border-primary/50 transition-all duration-500 hover:-translate-y-2">
+          <div class="relative w-full aspect-[4/5] rounded-lg overflow-hidden mb-6 bg-surface-dark">
+            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+              style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAlJcnOMA654DkHI7V4_LzcM8LZbXjM5wnS8Mzm9RgkS9o75Ti4xuTQ7yEl3sWdXxEhpxeN_yEHJ9DrqijEUBQQ-gWaB8ovUpnvlC0U63NB7rt-QS-B2xNCjdvYljVvnRKEBv8fVtH5JQbqrqXOjdtGi5bTeu9APfAbVjAcIHWvydJi49Qo2JnVI9nisUQHYFLVYLErFIr_CGWKV6BSmMSRdWaGhQgJYv3rDUBJF3OtCvDnbbDDSOiDhoH6adfHe4lbu3sxraRtwt61');">
+            </div>
+          </div>
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-2xl font-serif font-bold text-white group-hover:text-primary transition-colors">Dark Ritual
+              Espresso</h3>
+            <span class="text-primary font-bold text-lg">Rs. 599</span>
+          </div>
+          <p class="text-white/60 text-sm mb-4 line-clamp-2">Deep, smoky chocolate notes with a velvety body. For those
+            who embrace the dark side.</p>
+          <div class="flex items-center gap-2 mb-6">
+            <span class="text-xs text-white/40 uppercase tracking-wide">Intensity</span>
+            <div class="flex gap-1">
+              <div class="w-2 h-2 rounded-full bg-primary"></div>
+              <div class="w-2 h-2 rounded-full bg-primary"></div>
+              <div class="w-2 h-2 rounded-full bg-primary"></div>
+              <div class="w-2 h-2 rounded-full bg-primary"></div>
+              <div class="w-2 h-2 rounded-full bg-primary"></div>
+            </div>
+          </div>
+          <button
+            class="w-full border border-primary text-primary hover:bg-primary hover:text-background-dark font-medium py-3 rounded-full transition-all duration-300 flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-lg">shopping_bag</span>Add to Cart
+          </button>
+        </div>
+        <!-- Card 3 -->
+        <div
+          class="glass-card rounded-lg p-6 group hover:border-primary/50 transition-all duration-500 hover:-translate-y-2">
+          <div class="relative w-full aspect-[4/5] rounded-lg overflow-hidden mb-6 bg-surface-dark">
+            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+              style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC6M_6OklOH6-4n3C66aXmtHKsW3oKLEkbq3ntCDqc6FiS8ITIy68XGSQZTklft-RUGC13ywy27YoHeRIDjlVvqLI0cWjT3XKoERoB8jXWPwnvmcy2MYRRyx7yt9wYPlaXW45m7JtElKQFvMPDeTjAXsawLkwn96gBQ0jwu-Bqon67oj3vwkm1KqDKPxtPrl8S5ELZGfdOidIwJcXqZtyIB3lG5VdR1DLC6ql58zHdYisyRaCbYiezuvIFaxZuUfWWh1oAdXvF4bEeq');">
+            </div>
+          </div>
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-2xl font-serif font-bold text-white group-hover:text-primary transition-colors">Colombian
+              Reserve</h3>
+            <span class="text-primary font-bold text-lg">Rs. 549</span>
+          </div>
+          <p class="text-white/60 text-sm mb-4 line-clamp-2">Balanced caramel sweetness with a nutty finish. A versatile
+            roast for any method.</p>
+          <div class="flex items-center gap-2 mb-6">
+            <span class="text-xs text-white/40 uppercase tracking-wide">Intensity</span>
+            <div class="flex gap-1">
+              <div class="w-2 h-2 rounded-full bg-primary"></div>
+              <div class="w-2 h-2 rounded-full bg-primary"></div>
+              <div class="w-2 h-2 rounded-full bg-primary"></div>
+              <div class="w-2 h-2 rounded-full bg-primary"></div>
+              <div class="w-2 h-2 rounded-full bg-white/20"></div>
+            </div>
+          </div>
+          <button
+            class="w-full border border-primary text-primary hover:bg-primary hover:text-background-dark font-medium py-3 rounded-full transition-all duration-300 flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-lg">shopping_bag</span>Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Craft Section (parallax) -->
+  <section class="relative h-[80vh] flex items-center justify-center bg-fixed bg-cover bg-center"
+    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBKKAWR4F4vDIdl7DTucXKgWeH_eT5bmjQn3aOLtRoA3bnJkHtlNN4uxEoa3kbaHU9b_mry5OXvzZZA0GBSzFhquF1rJBNcKt-_g8qfqSQQOUyeYnECP0ruC9mmL4WTNI9H3NGJgAs6DuEvx1oU1c5dbydWg_Vn3AsNLj28pQTjxpIZCaVRZ0ohmAETBX6bHITOA1XpNespjZR1b02D4I4WcynnBX8EZk2kM3_lqeJ69VlDeMklR5-EpNeIzORdY-_aZbZnTXR75bIo');">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
+    <div class="relative z-10 text-center max-w-4xl px-6">
+      <span
+        class="inline-block py-1 px-3 rounded-full border border-white/20 bg-white/5 text-white/80 text-xs font-bold uppercase tracking-widest mb-6">Our
+        Process</span>
+      <h2 class="font-serif text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">Roasted With <span
+          class="italic text-primary">Intention</span></h2>
+      <p class="text-white/80 text-xl md:text-2xl font-light mb-10 max-w-2xl mx-auto">Small-batch. To-order. Zero
+        warehouse shelves. If a harvest isn't exceptional, we don't carry it.</p>
+      <a class="inline-flex items-center gap-3 text-primary text-lg font-medium hover:text-white transition-colors group"
+        href="story.html">Learn Our Process <span
+          class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_right_alt</span></a>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-24 bg-surface-dark">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-4xl font-bold text-white mb-4">Connoisseurs Agree</h2>
+        <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-card p-8 rounded-lg relative">
+          <span class="material-symbols-outlined absolute top-6 right-6 text-white/10 text-6xl">format_quote</span>
+          <div class="flex gap-1 text-primary mb-6">★★★★★</div>
+          <p class="text-white/80 italic mb-6 leading-relaxed font-serif">"I've tried specialty coffees from all over
+            the world, but the Ethiopian Sunrise is in a league of its own. Absolutely sublime."</p>
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-cover bg-center"
+              style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCVfORJe3b7NtKxqgowxVUljD0DgfGbySkPN-yL1h1mqRFMW4q6azByjGK3DEICOMWUSonW8oxD8uzTKJFAeM_hci3-0QAND-PWZ2KmLOsljtKqHtSV4aziNRR99iduXTXHCZuGNJmgQntQqWqudUUBx37TUkYsO7Djvj-MfP0iO5aI3VqLx4MxEOc2j6bSEKicI-9LHb4i76dDVw5VFpUsNvdT_5Dns9Ya3gWJwTX131zNZxl8TMDXK7KGR8sRa_dx4TMpx8y6ePzi');">
+            </div>
+            <div>
+              <p class="text-white font-bold text-sm">James Carter</p>
+              <p class="text-white/40 text-xs">Verified Buyer</p>
+            </div>
+          </div>
+        </div>
+        <div class="glass-card p-8 rounded-lg relative scale-105 shadow-xl bg-gradient-to-b from-white/10 to-white/5">
+          <span class="material-symbols-outlined absolute top-6 right-6 text-white/10 text-6xl">format_quote</span>
+          <div class="flex gap-1 text-primary mb-6">★★★★★</div>
+          <p class="text-white/90 italic mb-6 leading-relaxed font-serif">"The Dark Ritual Espresso has changed my
+            morning routine forever. Bold, rich, and never bitter. The packaging is art itself."</p>
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-cover bg-center"
+              style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDpgho9xGDpBUvTc2zYsH6rkV_erf58bzh9quKK-zV923dmmMpVfKj24fBRUEy-36cLjMDCoY2Q6GAN3eEpDQMkg98jlkEuU2koulg2Stx1IfBzybR1p_-b7OAck8-OPTErpz2t95zoF2_MFiURiRq53GFI0rqY_8eSSc8HDcI9zdZOu1bRqtwXLOfHjTPLlQ6Iko_ta641qcz8jKfSs6KSLJrPTGxrExiMLpCnU8IhcQ2NC7PS8C1NXo5XkViejvrgCUNu5k78rSX4');">
+            </div>
+            <div>
+              <p class="text-white font-bold text-sm">Sarah Jenkins</p>
+              <p class="text-white/40 text-xs">Coffee Enthusiast</p>
+            </div>
+          </div>
+        </div>
+        <div class="glass-card p-8 rounded-lg relative">
+          <span class="material-symbols-outlined absolute top-6 right-6 text-white/10 text-6xl">format_quote</span>
+          <div class="flex gap-1 text-primary mb-6">★★★★★</div>
+          <p class="text-white/80 italic mb-6 leading-relaxed font-serif">"Finally, a brand that understands the science
+            of roasting. Consistent quality every single time. Highly recommended."</p>
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-cover bg-center"
+              style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfNhkibzVofWZC0DbbBRttXruAxUiA0TkyrILwhDDPOP9miJdlbunjFPfe9ibyI3WDIhhfyoqe--Ha4LHUDc00r2_hXLR2guBqR4npZZB7coGx5w5i1XvVGN4bef0gE25q54vbNV3xBsec-55UlAb3r3A9ML-zSqkRXSO4MpYkj-8OPBUZUvuPXPQXhiNVQ4SXcMSs1o1tls69iR5FE1oaBiilttbLZwTXmZdy3mNlL18JNcbPCr2ks5ZMWVrTnjUUFRnsykQ-jhqF');">
+            </div>
+            <div>
+              <p class="text-white font-bold text-sm">Michael Chen</p>
+              <p class="text-white/40 text-xs">Barista</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="py-20 bg-background-dark">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <span class="material-symbols-outlined text-primary text-4xl mb-4 block">mail</span>
+      <h2 class="font-serif text-4xl font-bold text-white mb-4">Stay In The Know</h2>
+      <p class="text-white/60 mb-8">New single-origins, limited roasts, and brew guides — delivered to your inbox first.
+      </p>
+      <form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+        <input type="email" placeholder="your@email.com"
+          class="flex-1 bg-surface-dark border border-white/10 text-white placeholder-white/30 px-5 py-3.5 rounded-full focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition">
+        <button type="submit"
+          class="bg-primary text-background-dark font-bold px-8 py-3.5 rounded-full hover:bg-white transition-all">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-background-dark border-t border-white/5 pt-20 pb-10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col items-center mb-16">
+        <div class="flex items-center gap-2 mb-6">
+          <span class="material-symbols-outlined text-primary text-4xl">coffee</span>
+          <h2 class="font-serif text-3xl font-bold text-white">BREWED</h2>
+        </div>
+        <p class="text-white/50 text-center max-w-sm italic font-serif text-lg">"Crafted for those who take coffee
+          seriously."</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16 border-b border-white/5 pb-16">
+        <div>
+          <h4 class="text-white font-bold mb-6">Shop</h4>
+          <ul class="flex flex-col gap-3 text-white/60 text-sm">
+            <li><a class="hover:text-primary transition-colors" href="menu.html">All Coffee</a></li>
+            <li><a class="hover:text-primary transition-colors" href="menu.html">Equipment</a></li>
+            <li><a class="hover:text-primary transition-colors" href="#">Subscriptions</a></li>
+            <li><a class="hover:text-primary transition-colors" href="#">Gift Cards</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold mb-6">Learn</h4>
+          <ul class="flex flex-col gap-3 text-white/60 text-sm">
+            <li><a class="hover:text-primary transition-colors" href="story.html">Our Story</a></li>
+            <li><a class="hover:text-primary transition-colors" href="story.html">The Process</a></li>
+            <li><a class="hover:text-primary transition-colors" href="#">Brew Guides</a></li>
+            <li><a class="hover:text-primary transition-colors" href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold mb-6">Support</h4>
+          <ul class="flex flex-col gap-3 text-white/60 text-sm">
+            <li><a class="hover:text-primary transition-colors" href="contact.html">Contact Us</a></li>
+            <li><a class="hover:text-primary transition-colors" href="#">Shipping</a></li>
+            <li><a class="hover:text-primary transition-colors" href="#">Returns</a></li>
+            <li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold mb-6">Stay Connected</h4>
+          <div class="flex gap-4 mb-6">
+            <a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary hover:text-background-dark transition-colors"
+              href="#" aria-label="Instagram">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd"
+                  d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </a>
+            <a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary hover:text-background-dark transition-colors"
+              href="#" aria-label="Twitter/X">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+            <a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary hover:text-background-dark transition-colors"
+              href="#" aria-label="YouTube">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd"
+                  d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z"
+                  clip-rule="evenodd" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center text-white/40 text-xs gap-4">
+        <p>© 2024 BREWED Coffee Co. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+          <a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCROLL ANIMATION SCRIPT -->
+  <script>
+      (function () {
+        const canvas = document.getElementById('coffee-canvas');
+        const ctx = canvas.getContext('2d');
+        const heroSection = document.getElementById('hero-canvas-section');
+        const heroText = document.getElementById('hero-text-block');
+        const TOTAL_FRAMES = 192;
+        // Use absolute path so works from both file:// and http://
+        const FRAME_DIR = 'CoffeeFrames/';
+
+        let currentFrame = null;
+        const frames = new Array(TOTAL_FRAMES);
+
+        function resizeCanvas() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+          if (currentFrame) render(currentFrame);
+        }
+
+        function render(img) {
+          if (!img || !img.complete || img.naturalWidth === 0) return;
+          const cw = canvas.width, ch = canvas.height;
+          const iw = img.naturalWidth, ih = img.naturalHeight;
+          const scale = Math.max(cw / iw, ch / ih);
+          const dw = iw * scale, dh = ih * scale;
+          ctx.fillStyle = '#1A0F07';
+          ctx.fillRect(0, 0, cw, ch);
+          ctx.drawImage(img, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
+        }
+
+        function getScrollProgress() {
+          // getBoundingClientRect is reliable cross-origin and for sticky calcs
+          const rect = heroSection.getBoundingClientRect();
+          const sectionHeight = heroSection.offsetHeight;
+          const viewH = window.innerHeight;
+          // rect.top goes from 0 (section just entered view top) 
+          // to -(sectionHeight - viewH) when we've scrolled to bottom of section
+          const scrolled = -rect.top;
+          const total = sectionHeight - viewH;
+          return Math.max(0, Math.min(1, scrolled / total));
+        }
+
+        function onScroll() {
+          const p = getScrollProgress();
+          const idx = Math.min(Math.floor(p * (TOTAL_FRAMES - 1)), TOTAL_FRAMES - 1);
+          if (frames[idx] && frames[idx].complete && frames[idx].naturalWidth > 0) {
+            currentFrame = frames[idx];
+            render(currentFrame);
+          }
+          heroText.style.opacity = Math.max(0, 1 - p * 5).toString();
+        }
+
+        function padNum(n) { return String(n).padStart(3, '0'); }
+
+        // Load frames — first one eagerly, rest lazily
+        for (let i = 0; i < TOTAL_FRAMES; i++) {
+          const img = new Image();
+          const capturedIdx = i;
+          img.onload = function () {
+            frames[capturedIdx] = this;
+            if (capturedIdx === 0) {
+              currentFrame = this;
+              render(this);
+            }
+            onScroll(); // Re-render in case we're mid-scroll during load
+          };
+          img.src = FRAME_DIR + 'ezgif-frame-' + padNum(i + 1) + '.jpg';
+          frames[i] = img;
+        }
+
+        window.addEventListener('resize', resizeCanvas, { passive: true });
+        window.addEventListener('scroll', onScroll, { passive: true });
+        resizeCanvas();
+        onScroll();
+      })();
+  </script>
+
+</body>
+
+</html>

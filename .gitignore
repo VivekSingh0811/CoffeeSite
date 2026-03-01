@@ -1,0 +1,22 @@
+# Exclude the large animation frames directory (192 JPG files ~100MB+)
+# Clients/deployers should place their own CoffeeFrames/ folder locally
+CoffeeFrames/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Node (if a dev server is used locally)
+node_modules/
+.npm/
