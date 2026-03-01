@@ -1,7 +1,3 @@
-# Exclude the large animation frames directory (192 JPG files ~100MB+)
-# Clients/deployers should place their own CoffeeFrames/ folder locally
-CoffeeFrames/
-
 # OS files
 .DS_Store
 Thumbs.db
